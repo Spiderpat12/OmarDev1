@@ -37,8 +37,6 @@ func _physics_process(delta) -> void:
 
 
 func Movement(delta) -> void:
-	print(motion)
-	print(jump_count)
 	if (x):
 		motion.x = move_toward(motion.x,x * speed,acc)
 	else:
