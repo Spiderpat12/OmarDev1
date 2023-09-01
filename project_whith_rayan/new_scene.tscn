@@ -7,3 +7,5 @@
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+
+[node name="Omar is hrama" type="Node2D" parent="."]
