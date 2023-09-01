@@ -47,7 +47,7 @@ func Gravity() -> void:
 
 
 func Jump() -> void:
-	if is_on_floor() && Input.is_action_just_pressed("ui_up"):
+	if is_on_floor() && Input.is_action_just_pressed("ui_up") && chapters != 2:
 		motion.y = -jump
 
 func doubleJump() -> void:
