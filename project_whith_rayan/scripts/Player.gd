@@ -21,6 +21,8 @@ onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * 
 onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak))* -1.0
 onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_descent))* -1.0
 
+
+
 func _process(delta) -> void:
 	motion = move_and_slide(motion,Vector2.UP)
 	x = Input.get_axis("ui_left","ui_right")
