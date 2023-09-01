@@ -14,6 +14,9 @@ extents = Vector2( 532.5, 44 )
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 238, 424 )
 script = ExtResource( 1 )
+jump_height = 100.0
+jump_time_to_peak = 0.5
+jump_time_to_descent = 0.4
 
 [node name="Sprite" type="Sprite" parent="Player"]
 texture = ExtResource( 3 )

@@ -6,6 +6,10 @@ export var jump : float = 400
 export var gravity : float = 10
 export var acc : float = 35
 
+export var jump_height: float
+export var jump_time_to_peak : float
+export var jump_time_to_descent : float
+
 var x : float
 var motion = Vector2()
 var max_jump = 1
@@ -13,7 +17,9 @@ var jump_count = 0
 var can_jump : bool = true
 
 onready var chapters : int = 1
-
+onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
+onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak))* -1.0
+onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_descent))* -1.0
 
 func _process(delta) -> void:
 	motion = move_and_slide(motion,Vector2.UP)
@@ -22,6 +28,7 @@ func _process(delta) -> void:
 
 
 func _physics_process(delta) -> void:
+	motion.y += get_gravity()*delta
 	Movement(delta)
 	Gravity()
 	Jump()
@@ -46,12 +53,12 @@ func Gravity() -> void:
 func Jump() -> void:
 	if can_jump == true:
 		if is_on_floor() && Input.is_action_just_pressed("ui_up"):
-			motion.y = -jump
+			motion.y = jump_velocity
 
 func doubleJump() -> void:
 	if jump_count < max_jump && can_jump == false:
 		if Input.is_action_just_pressed("ui_up") && chapters == 2:
-			motion.y = -jump
+			motion.y = jump_velocity
 			jump_count += 1
 	if is_on_floor() && jump_count != 0:
 		jump_count = 0
@@ -73,5 +80,6 @@ func chapters() -> void:
 
 
 
-
+func get_gravity() -> float:
+	return jump_gravity if motion.y < 0.0 else fall_gravity
 
