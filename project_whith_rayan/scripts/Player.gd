@@ -8,9 +8,10 @@ export var acc : float = 35
 
 var x : float
 var motion = Vector2()
-var chapters : int = 1
-var max_jump = 2
+var chapters : int = 2
+var max_jump = 1
 var jump_count = 0
+var can_jump : bool = false
 
 
 func _ready():
@@ -29,11 +30,12 @@ func _physics_process(delta) -> void:
 	Gravity()
 	Jump()
 	chapters()
-	doubleJump()
+#	doubleJump()
 
 
 func Movement(delta) -> void:
 	print(motion)
+	print(jump_count)
 	if (x):
 		motion.x = move_toward(motion.x,x * speed,acc)
 	else:
@@ -47,16 +49,17 @@ func Gravity() -> void:
 
 
 func Jump() -> void:
-	if is_on_floor() && Input.is_action_just_pressed("ui_up"):
+	print(can_jump)
+	if is_on_floor() && Input.is_action_just_pressed("ui_up") && can_jump == true:
 		motion.y = -jump
 
-func doubleJump() -> void:
-	if jump_count < max_jump && chapters == 2 or 3:
-		if Input.is_action_just_pressed("ui_up"):
-			motion.y = -jump
-			jump_count += 1
-	if is_on_floor() && jump_count != 0:
-		jump_count = 0
+#func doubleJump() -> void:
+#	if jump_count < max_jump && chapters == 2 or 3:
+#		if Input.is_action_just_pressed("ui_up") && chapters == 2:
+#			motion.y = -jump
+#			jump_count += 1
+#	if is_on_floor() && jump_count != 0:
+#		jump_count = 0
 
 
 
@@ -67,7 +70,7 @@ func chapters() -> void:
 			pass
 		2:
 			#roll_func
-			doubleJump()
+#			doubleJump()
 			pass
 		3:
 			pass
