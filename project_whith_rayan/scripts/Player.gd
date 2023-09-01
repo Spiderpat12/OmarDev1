@@ -97,4 +97,6 @@ func get_gravity() -> float:
 
 
 
-
+func anime() -> void:
+	if(motion != 0):
+		pass
