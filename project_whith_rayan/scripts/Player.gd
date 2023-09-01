@@ -4,7 +4,7 @@ extends KinematicBody2D
 export var speed : float = 300
 export var jump : float = 200
 export var gravity : float = 15
-export var acc : float = 35
+export var acc : float = 50
 
 export var jump_height: float
 export var jump_time_to_peak : float
@@ -16,7 +16,7 @@ var max_jump = 1
 var jump_count = 0
 var can_jump : bool = true
 
-onready var chapters : int = 1
+onready var chapters : int = 3
 onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak))* -1.0
 onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_descent))* -1.0
@@ -41,7 +41,7 @@ func Movement(delta) -> void:
 	if (x):
 		motion.x = move_toward(motion.x,x * speed,acc)
 	else:
-		motion.x = lerp(motion.x, 0, 5 * delta)
+		motion.x = lerp(motion.x, 0, 8 * delta)
 
 
 func Gravity() -> void:
@@ -57,9 +57,14 @@ func Jump() -> void:
 
 func doubleJump() -> void:
 	if jump_count < max_jump && can_jump == false:
-		if Input.is_action_just_pressed("ui_up") && chapters == 2:
-			motion.y = jump_velocity
-			jump_count += 1
+		if Input.is_action_just_pressed("ui_up"):
+			match chapters:
+				2:
+					motion.y = jump_velocity
+					jump_count += 1
+				3:
+					motion.y = jump_velocity
+					jump_count += 1
 	if is_on_floor() && jump_count != 0:
 		jump_count = 0
 
@@ -72,10 +77,10 @@ func chapters() -> void:
 			pass
 		2:
 			#roll_func
-			doubleJump()
 			can_jump = false
 			pass
 		3:
+			doubleJump()
 			pass
 
 
