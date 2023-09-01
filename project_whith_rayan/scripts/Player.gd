@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 
-export var speed : float = 200
+export var speed : float = 300
 export var jump : float = 400
 export var gravity : float = 10
-export var acc : float = 5
+export var acc : float = 35
 
 var x : float
 var motion = Vector2()
@@ -47,7 +47,7 @@ func Gravity() -> void:
 
 
 func Jump() -> void:
-	if is_on_floor() && Input.is_action_just_pressed("ui_up") && chapters != 2:
+	if is_on_floor() && Input.is_action_just_pressed("ui_up"):
 		motion.y = -jump
 
 func doubleJump() -> void:
@@ -67,6 +67,7 @@ func chapters() -> void:
 			pass
 		2:
 			#roll_func
+			doubleJump()
 			pass
 		3:
 			pass
