@@ -44,6 +44,12 @@ func Movement(delta) -> void:
 	else:
 		motion.x = lerp(motion.x, 0, 8 * delta)
 
+func flip() -> void:
+	if motion.x < 0:
+		$Sprite.scale.x = -1
+	if motion.x > 0:
+		$Sprite.scale.x = 1
+
 
 func Gravity() -> void:
 	if !is_on_floor():
@@ -92,9 +98,5 @@ func get_gravity() -> float:
 	return jump_gravity if motion.y < 0.0 else fall_gravity
 
 
-func flip() -> void:
-	if motion.x < 0:
-		$Sprite.scale.x = -1
-	if motion.x > 0:
-		$Sprite.scale.x = 1
+
 
