@@ -33,6 +33,7 @@ func _physics_process(delta) -> void:
 	Gravity()
 	Jump()
 	chapters()
+	flip()
 
 
 func Movement(delta) -> void:
@@ -78,8 +79,10 @@ func chapters() -> void:
 		2:
 			#roll_func
 			can_jump = false
+			doubleJump()
 			pass
 		3:
+			can_jump = false
 			doubleJump()
 			pass
 
@@ -87,4 +90,11 @@ func chapters() -> void:
 
 func get_gravity() -> float:
 	return jump_gravity if motion.y < 0.0 else fall_gravity
+
+
+func flip() -> void:
+	if motion.x < 0:
+		$Sprite.scale.x = -1
+	if motion.x > 0:
+		$Sprite.scale.x = 1
 
