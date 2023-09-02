@@ -221,9 +221,6 @@ graph_offset = Vector2( 0, 54.2734 )
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 238, 424 )
 script = ExtResource( 1 )
-jump_height = 100.0
-jump_time_to_peak = 0.5
-jump_time_to_descent = 0.4
 
 [node name="Squish" type="Node2D" parent="."]
 position = Vector2( 1, 12 )
@@ -275,6 +272,10 @@ one_shot = true
 
 [node name="Timers_for_wall_jump" type="Node2D" parent="."]
 
+[node name="RWcast1" type="RayCast2D" parent="Timers_for_wall_jump"]
+enabled = true
+cast_to = Vector2( 10, 0 )
+
 [node name="WallJumpTimer" type="Timer" parent="Timers_for_wall_jump"]
 wait_time = 0.15
 one_shot = true
@@ -288,10 +289,6 @@ wait_time = 0.15
 one_shot = true
 
 [node name="Raycast_wall_jump" type="Node2D" parent="."]
-
-[node name="RWcast1" type="RayCast2D" parent="Raycast_wall_jump"]
-enabled = true
-cast_to = Vector2( 10, 0 )
 
 [node name="RWcast2" type="RayCast2D" parent="Raycast_wall_jump"]
 position = Vector2( 0, 8.609 )
