@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=35 format=2]
+=======
+[gd_scene load_steps=42 format=2]
+>>>>>>> f25e1d1f88ee1c9c31f25eba48ec5bac2289beee
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/PLAYER.png" type="Texture" id=2]
@@ -207,9 +211,29 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
+<<<<<<< HEAD
 [sub_resource type="AnimationNodeStateMachine" id=29]
 states/Jump/node = SubResource( 8 )
 states/Jump/position = Vector2( 568, 539 )
+=======
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachine" id=29]
+states/Jump/node = SubResource( 8 )
+states/Jump/position = Vector2( 568, 539 )
+states/baking/node = SubResource( 33 )
+states/baking/position = Vector2( 935, 539 )
+>>>>>>> f25e1d1f88ee1c9c31f25eba48ec5bac2289beee
 states/fall/node = SubResource( 9 )
 states/fall/position = Vector2( 867, 551 )
 states/idle/node = SubResource( 10 )
@@ -218,7 +242,11 @@ states/slide/node = SubResource( 11 )
 states/slide/position = Vector2( 512, 421 )
 states/walk/node = SubResource( 12 )
 states/walk/position = Vector2( 935, 421 )
+<<<<<<< HEAD
 transitions = [ "idle", "fall", SubResource( 13 ), "fall", "idle", SubResource( 14 ), "idle", "walk", SubResource( 15 ), "walk", "idle", SubResource( 16 ), "idle", "Jump", SubResource( 17 ), "Jump", "idle", SubResource( 18 ), "idle", "slide", SubResource( 19 ), "slide", "idle", SubResource( 20 ), "fall", "Jump", SubResource( 21 ), "slide", "Jump", SubResource( 22 ), "Jump", "slide", SubResource( 23 ), "slide", "fall", SubResource( 24 ), "fall", "slide", SubResource( 25 ), "slide", "walk", SubResource( 26 ), "walk", "slide", SubResource( 27 ), "Jump", "fall", SubResource( 28 ) ]
+=======
+transitions = [ "idle", "fall", SubResource( 13 ), "fall", "idle", SubResource( 14 ), "idle", "walk", SubResource( 15 ), "walk", "idle", SubResource( 16 ), "idle", "Jump", SubResource( 17 ), "Jump", "idle", SubResource( 18 ), "idle", "slide", SubResource( 19 ), "slide", "idle", SubResource( 20 ), "fall", "Jump", SubResource( 21 ), "slide", "Jump", SubResource( 22 ), "Jump", "slide", SubResource( 23 ), "slide", "fall", SubResource( 24 ), "fall", "slide", SubResource( 25 ), "slide", "walk", SubResource( 26 ), "walk", "slide", SubResource( 27 ), "Jump", "fall", SubResource( 28 ), "walk", "baking", SubResource( 34 ), "baking", "walk", SubResource( 35 ), "baking", "fall", SubResource( 36 ), "fall", "baking", SubResource( 37 ), "baking", "idle", SubResource( 38 ), "idle", "baking", SubResource( 39 ) ]
+>>>>>>> f25e1d1f88ee1c9c31f25eba48ec5bac2289beee
 start_node = "idle"
 graph_offset = Vector2( 0, 317.294 )
 
