@@ -228,7 +228,16 @@ anims/walk = SubResource( 4 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 29 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 30 )
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [node name="Timers_for_wall_jump" type="Node2D" parent="."]
 

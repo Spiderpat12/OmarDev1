@@ -22,6 +22,7 @@ onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * 
 onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_descent))* -1.0
 
 var Anime;
+var have_coyote = false
 
 func _ready() -> void:
 	Anime = $AnimationTree.get("parameters/playback")
@@ -59,13 +60,14 @@ func flip() -> void:
 func Jump() -> void:
 	if !is_on_floor():
 		motion.y += gravity
-	else:
-		if motion.y > gravity:
-			LandSquish()
-		motion.y = gravity
+		if have_coyote:
+			$CoyoteTimer.start()
+			have_coyote = false
 	if can_jump == true:
-		if is_on_floor() && Input.is_action_just_pressed("ui_up"):
+		if (is_on_floor() or !$CoyoteTimer.is_stopped()) && (Input.is_action_just_pressed("ui_up") or !$JumpBufferTimer.is_stopped()):
 			motion.y = jump_velocity
+			$CoyoteTimer.stop()
+			$JumpBufferTimer.stop()
 			JumpSquish()
 
 func doubleJump() -> void:
@@ -116,6 +118,8 @@ func anime() -> void:
 		Anime.travel("fall")
 	if (motion.y < -gravity):
 		Anime.travel("Jump")
+
+	
 
 
 func JumpSquish():
