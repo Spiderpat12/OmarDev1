@@ -23,6 +23,7 @@ onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * 
 
 var Anime;
 var have_coyote = false
+var bak;
 
 func _ready() -> void:
 	Anime = $AnimationTree.get("parameters/playback")
@@ -34,12 +35,14 @@ func _process(delta) -> void:
 
 
 func _physics_process(delta) -> void:
+	bak = motion.x * 5/100;
 	motion.y += get_gravity()*delta
 	Movement(delta)
 	Jump()
 	chapters()
 	flip()
 	anime()
+	Braking()
 
 
 func Movement(delta) -> void:
@@ -121,6 +124,13 @@ func anime() -> void:
 
 	
 
+func Braking():
+	if is_on_floor() && motion.x > 0 && Input.is_action_pressed("ui_left"):
+		motion.x = motion.x - bak
+		Anime.travel("baking")
+	elif is_on_floor() && motion.x < 0 && Input.is_action_pressed("ui_right"):
+		motion.x = motion.x - bak
+		Anime.travel("baking")
 
 func JumpSquish():
 	var tween = create_tween()
