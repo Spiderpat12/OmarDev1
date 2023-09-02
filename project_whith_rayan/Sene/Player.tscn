@@ -212,3 +212,37 @@ tree_root = SubResource( 29 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 30 )
+
+[node name="Timers_for_wall_jump" type="Node2D" parent="."]
+
+[node name="WallJumpTimer" type="Timer" parent="Timers_for_wall_jump"]
+wait_time = 0.15
+one_shot = true
+
+[node name="WallCoyoteTimer" type="Timer" parent="Timers_for_wall_jump"]
+wait_time = 0.15
+one_shot = true
+
+[node name="WallDelayTimer" type="Timer" parent="Timers_for_wall_jump"]
+wait_time = 0.15
+one_shot = true
+
+[node name="Raycast_wall_jump" type="Node2D" parent="."]
+
+[node name="RWcast1" type="RayCast2D" parent="Raycast_wall_jump"]
+enabled = true
+cast_to = Vector2( 10, 0 )
+
+[node name="RWcast2" type="RayCast2D" parent="Raycast_wall_jump"]
+position = Vector2( 0, 8.609 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+
+[node name="LWcast1" type="RayCast2D" parent="Raycast_wall_jump"]
+enabled = true
+cast_to = Vector2( -10, 0 )
+
+[node name="LWcast2" type="RayCast2D" parent="Raycast_wall_jump"]
+position = Vector2( 0, 8.60901 )
+enabled = true
+cast_to = Vector2( -10, 0 )
