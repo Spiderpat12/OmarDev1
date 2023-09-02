@@ -4,7 +4,7 @@ extends KinematicBody2D
 export var speed : float = 300
 export var jump : float = 200
 export var gravity : float = 15
-export var acc : float = 15
+export var acc : float = 20
 
 export var jump_height: float
 export var jump_time_to_peak : float
