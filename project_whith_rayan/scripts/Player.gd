@@ -16,7 +16,7 @@ var max_jump = 1
 var jump_count = 0
 var can_jump : bool = true
 
-onready var chapters : int = 3
+onready var chapters : int = 2
 onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak))* -1.0
 onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_descent))* -1.0
@@ -49,9 +49,9 @@ func Movement(delta) -> void:
 
 func flip() -> void:
 	if motion.x < 0:
-		$Sprite.scale.x = -1
+		$Squish/Sprite.scale.x = -1
 	if motion.x > 0:
-		$Sprite.scale.x = 1
+		$Squish/Sprite.scale.x = 1
 
 
 
@@ -76,7 +76,9 @@ func doubleJump() -> void:
 				2:
 					motion.y = jump_velocity
 					jump_count += 1
+					JumpSquish()
 				3:
+					JumpSquish()
 					motion.y = jump_velocity
 					jump_count += 1
 	if is_on_floor() && jump_count != 0:
