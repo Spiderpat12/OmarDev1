@@ -13,6 +13,10 @@ config_version=4
 config/name="project_whith_rayan"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

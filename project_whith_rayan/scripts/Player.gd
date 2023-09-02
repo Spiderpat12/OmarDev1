@@ -21,7 +21,10 @@ onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * 
 onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak))* -1.0
 onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_descent))* -1.0
 
+var Anime;
 
+func _ready() -> void:
+	Anime = $AnimationTree.get("parameters/playback")
 
 func _process(delta) -> void:
 	motion = move_and_slide(motion,Vector2.UP)
@@ -32,10 +35,10 @@ func _process(delta) -> void:
 func _physics_process(delta) -> void:
 	motion.y += get_gravity()*delta
 	Movement(delta)
-	Gravity()
 	Jump()
 	chapters()
 	flip()
+	anime()
 
 
 func Movement(delta) -> void:
@@ -51,16 +54,20 @@ func flip() -> void:
 		$Sprite.scale.x = 1
 
 
-func Gravity() -> void:
-	if !is_on_floor():
-		motion.y += gravity
-	pass
 
 
 func Jump() -> void:
+	if !is_on_floor():
+		motion.y += gravity
+	else:
+		if motion.y > gravity:
+			pass
+		motion.y = gravity
 	if can_jump == true:
 		if is_on_floor() && Input.is_action_just_pressed("ui_up"):
 			motion.y = jump_velocity
+			JumpSquish()
+			print("aaa")
 
 func doubleJump() -> void:
 	if jump_count < max_jump && can_jump == false:
@@ -100,5 +107,26 @@ func get_gravity() -> float:
 
 
 func anime() -> void:
-	if(motion != 0):
-		pass
+	if(x) && motion.x != 0:
+		Anime.travel("walk")
+	else:
+		Anime.travel("idle")
+	if (motion.y > gravity) && !is_on_floor():
+		Anime.travel("fall")
+	if (motion.y < -gravity):
+		Anime.travel("Jump")
+
+
+func JumpSquish():
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property($Squish,"scale",Vector2(0.7,1.3),0.1)
+	tween.tween_property($Squish,"scale",Vector2(1,1),0.1)
+	pass
+
+func LandSquish():
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property($Squish,"scale",Vector2(1.3,0.7),0.05)
+	tween.tween_property($Squish,"scale",Vector2(1,1),0.1)
+	pass
