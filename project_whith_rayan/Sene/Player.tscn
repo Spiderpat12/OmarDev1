@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/PLAYER.png" type="Texture" id=2]
@@ -35,6 +35,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Rect2( 10, 4, 13, 25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Squish/Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0.512 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -101,6 +113,34 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 138, 4, 13, 26 ), Rect2( 170, 3, 13, 28 ), Rect2( 202, 3, 13, 28 ), Rect2( 234, 3, 13, 28 ) ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "wall jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Squish/Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Rect2( 841, 5, 13, 24 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Squish/Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0.5 ) ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=8]
@@ -182,6 +222,7 @@ position = Vector2( 1, 12 )
 [node name="Sprite" type="Sprite" parent="Squish"]
 position = Vector2( -1, -12 )
 texture = ExtResource( 2 )
+offset = Vector2( 0, 0.512 )
 region_enabled = true
 region_rect = Rect2( 10, 4, 13, 25 )
 
@@ -206,6 +247,7 @@ anims/fall = SubResource( 6 )
 anims/idle = SubResource( 3 )
 anims/slide = SubResource( 7 )
 anims/walk = SubResource( 4 )
+"anims/wall jump" = SubResource( 31 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 29 )
