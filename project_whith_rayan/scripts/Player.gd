@@ -4,7 +4,7 @@ extends KinematicBody2D
 export var speed : float = 300
 export var jump : float = 200
 export var gravity : float = 15
-export var acc : float = 50
+export var acc : float = 15
 
 export var jump_height: float
 export var jump_time_to_peak : float
@@ -45,7 +45,7 @@ func Movement(delta) -> void:
 	if (x):
 		motion.x = move_toward(motion.x,x * speed,acc)
 	else:
-		motion.x = lerp(motion.x, 0, 8 * delta)
+		motion.x = lerp(motion.x, 0, 9 * delta)
 
 func flip() -> void:
 	if motion.x < 0:
@@ -61,13 +61,12 @@ func Jump() -> void:
 		motion.y += gravity
 	else:
 		if motion.y > gravity:
-			pass
+			LandSquish()
 		motion.y = gravity
 	if can_jump == true:
 		if is_on_floor() && Input.is_action_just_pressed("ui_up"):
 			motion.y = jump_velocity
 			JumpSquish()
-			print("aaa")
 
 func doubleJump() -> void:
 	if jump_count < max_jump && can_jump == false:
